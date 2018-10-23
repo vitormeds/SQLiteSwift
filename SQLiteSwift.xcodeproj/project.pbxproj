@@ -106,15 +106,13 @@
 			isa = PBXGroup;
 			children = (
 				F494ABA6217F46400049D2D1 /* AppDelegate.swift */,
-				F494ABA8217F46400049D2D1 /* UserCadViewController.swift */,
-				F40FA633217F47E500AF5B30 /* UserCadView.swift */,
-				F40FA637217F4B7500AF5B30 /* UserListTableViewController.swift */,
-				F49999F1217F623800DD8E01 /* User.swift */,
-				F49999F5217F83B600DD8E01 /* UserDB.swift */,
+				F40FA635217F485100AF5B30 /* Localizable.strings */,
+				F49999F8217F870900DD8E01 /* Controller */,
+				F49999F7217F86FC00DD8E01 /* Model */,
+				F49999F9217F872300DD8E01 /* View */,
 				F494ABAD217F46420049D2D1 /* Assets.xcassets */,
 				F494ABAF217F46420049D2D1 /* LaunchScreen.storyboard */,
 				F494ABB2217F46420049D2D1 /* Info.plist */,
-				F40FA635217F485100AF5B30 /* Localizable.strings */,
 			);
 			path = SQLiteSwift;
 			sourceTree = "<group>";
@@ -135,6 +133,32 @@
 				F494ABC8217F46420049D2D1 /* Info.plist */,
 			);
 			path = SQLiteSwiftUITests;
+			sourceTree = "<group>";
+		};
+		F49999F7217F86FC00DD8E01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F49999F1217F623800DD8E01 /* User.swift */,
+				F49999F5217F83B600DD8E01 /* UserDB.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F49999F8217F870900DD8E01 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F494ABA8217F46400049D2D1 /* UserCadViewController.swift */,
+				F40FA637217F4B7500AF5B30 /* UserListTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F49999F9217F872300DD8E01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F40FA633217F47E500AF5B30 /* UserCadView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
