@@ -28,7 +28,17 @@ class UserCadViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Salvar", style: .done, target: self, action: #selector(performSave))
+        if isEdit
+        {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Editar", style: .done, target: self, action: #selector(performEdit))
+            userCadView.campoNome.text = user.nome
+            userCadView.campoEndereco.text = user.endereco
+            userCadView.campoTelefone.text = user.telefone
+        }
+        else
+        {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Salvar", style: .done, target: self, action: #selector(performSave))
+        }
         
         view.addSubview(userCadView)
         userCadView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
@@ -48,6 +58,14 @@ extension UserCadViewController
        userDB.save(user: User(id: 0, nome: userCadView.campoNome.text, endereco: userCadView.campoEndereco.text, telefone: userCadView.campoTelefone.text))
        delegate.getData()
        dismiss(animated: true)
+    }
+    
+    @objc func performEdit()
+    {
+        let userDB = UserDB()
+        userDB.update(user: User(id: user.id, nome: userCadView.campoNome.text, endereco: userCadView.campoEndereco.text, telefone: userCadView.campoTelefone.text))
+        delegate.getData()
+        dismiss(animated: true)
     }
 }
 

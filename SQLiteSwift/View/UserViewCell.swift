@@ -54,6 +54,7 @@ class UserViewCell: UITableViewCell {
         telefoneLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive =  true
         telefoneLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
         
+        addSubview(enderecoLabel)
         enderecoLabel.topAnchor.constraint(equalTo: telefoneLabel.bottomAnchor, constant: 16).isActive = true
         enderecoLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
         enderecoLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true

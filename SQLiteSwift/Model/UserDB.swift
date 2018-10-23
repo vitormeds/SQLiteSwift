@@ -41,31 +41,15 @@ class UserDB {
     {
         load()
         
+        print("\(user)")
+        
         var stmt: OpaquePointer?
         
-        let queryString = "INSERT INTO USER (NOME, ENDERECO, TELEFONE) VALUES (?,?,?)"
+        let queryString = "INSERT INTO USER (NOME, ENDERECO, TELEFONE) VALUES ('\(user.nome ?? "")','\(user.endereco ?? "")','\(user.telefone ?? "")')"
         
         if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error preparing insert: \(errmsg)")
-            return
-        }
-        
-        if sqlite3_bind_text(stmt, 1, user.nome, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("failure binding name: \(errmsg)")
-            return
-        }
-        
-        if sqlite3_bind_text(stmt, 2, user.endereco, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("failure binding name: \(errmsg)")
-            return
-        }
-        
-        if sqlite3_bind_text(stmt, 3, user.telefone, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("failure binding name: \(errmsg)")
             return
         }
         
@@ -115,5 +99,67 @@ class UserDB {
         close()
         
         return userList
+    }
+    
+    func delete(id: Int)
+    {
+        load()
+        
+        var stmt: OpaquePointer?
+        
+        let queryString = "DELETE FROM USER WHERE id = ?"
+        
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insert: \(errmsg)")
+            return
+        }
+        
+        if  sqlite3_bind_int(stmt, 1, Int32(id)) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure binding name: \(errmsg)")
+            return
+        }
+        
+        if sqlite3_step(stmt) != SQLITE_DONE {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure inserting user: \(errmsg)")
+            return
+        }
+        
+        if sqlite3_finalize(stmt) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error finalizing prepared statement: \(errmsg)")
+        }
+        
+        close()
+    }
+    
+    func update(user: User)
+    {
+        load()
+        
+        var stmt: OpaquePointer?
+        let queryString = " UPDATE USER SET NOME = '\(user.nome ?? "")', ENDERECO = '\(user.endereco ?? "")', TELEFONE = '\(user.telefone ?? "")' WHERE id = '\(user.id.description)'"
+        
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insert: \(errmsg)")
+            return
+        }
+        
+        if sqlite3_step(stmt) != SQLITE_DONE {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure inserting user: \(errmsg)")
+            return
+        }
+        
+        if sqlite3_finalize(stmt) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error finalizing prepared statement: \(errmsg)")
+        }
+        
+        close()
+        
     }
 }
