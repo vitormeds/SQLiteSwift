@@ -17,6 +17,9 @@ class UserCadViewController: UIViewController {
     
     var db: OpaquePointer?
     
+    var isEdit = false
+    var user : User!
+    
     var userCadView = UserCadView()
     
     var delegate: UpdateList!
