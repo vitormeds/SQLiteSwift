@@ -1,0 +1,11 @@
+/* 
+  File.strings
+  SQLiteSwift
+
+  Created by Vitor Mendes on 23/10/18.
+  Copyright © 2018 Vitor Mendes. All rights reserved.
+*/
+
+"Nome" = "Nome";
+"Telefone" = "Telefone";
+"Endereco" = "Endereço";
